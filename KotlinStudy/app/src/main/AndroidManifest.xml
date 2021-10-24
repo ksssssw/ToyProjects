@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotlinStudy">
         <activity
-            android:name=".AddViewActivity"
+            android:name=".ListViewActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,10 +21,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LibaryActivity"
+            android:name=".PhoneBookDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PhoneBookActivity"
             android:exported="true">
 
         </activity>
+        <activity
+            android:name=".AddViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LibaryActivity"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
