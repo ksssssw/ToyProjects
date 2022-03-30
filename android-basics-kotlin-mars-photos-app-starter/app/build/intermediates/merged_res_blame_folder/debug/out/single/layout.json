@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/grid_view_item.xml",
+        "source": "/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/res/layout/grid_view_item.xml"
+    },
+    {
+        "merged": "/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_overview.xml",
+        "source": "/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/res/layout/fragment_overview.xml"
+    }
+]

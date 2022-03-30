@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/kang-seokwon/Downloads/android-basics-kotlin-cupcake-app-starter/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_flavor.xml",
+        "source": "/Users/kang-seokwon/Downloads/android-basics-kotlin-cupcake-app-starter/app/src/main/res/layout/fragment_flavor.xml"
+    },
+    {
+        "merged": "/Users/kang-seokwon/Downloads/android-basics-kotlin-cupcake-app-starter/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_start.xml",
+        "source": "/Users/kang-seokwon/Downloads/android-basics-kotlin-cupcake-app-starter/app/src/main/res/layout/fragment_start.xml"
+    },
+    {
+        "merged": "/Users/kang-seokwon/Downloads/android-basics-kotlin-cupcake-app-starter/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_pickup.xml",
+        "source": "/Users/kang-seokwon/Downloads/android-basics-kotlin-cupcake-app-starter/app/src/main/res/layout/fragment_pickup.xml"
+    },
+    {
+        "merged": "/Users/kang-seokwon/Downloads/android-basics-kotlin-cupcake-app-starter/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_summary.xml",
+        "source": "/Users/kang-seokwon/Downloads/android-basics-kotlin-cupcake-app-starter/app/src/main/res/layout/fragment_summary.xml"
+    }
+]

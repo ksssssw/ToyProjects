@@ -1,0 +1,24 @@
+androidx/databinding/DataBindingComponent.java
+ androidx.databinding.DataBindingComponent
+androidx/databinding/library/baseAdapters/BR.java
+ androidx.databinding.library.baseAdapters.BR
+com/example/android/marsphotos/DataBindingTriggerClass.java
+ com.example.android.marsphotos.DataBindingTriggerClass
+com/example/android/marsphotos/BuildConfig.java
+ com.example.android.marsphotos.BuildConfig
+com/example/android/marsphotos/BR.java
+ com.example.android.marsphotos.BR
+androidx/databinding/DataBinderMapperImpl.java
+ androidx.databinding.DataBinderMapperImpl
+com/example/android/marsphotos/DataBinderMapperImpl.java
+ com.example.android.marsphotos.DataBinderMapperImpl
+ com.example.android.marsphotos.DataBinderMapperImpl$InnerBrLookup
+ com.example.android.marsphotos.DataBinderMapperImpl$InnerLayoutIdLookup
+com/example/android/marsphotos/databinding/GridViewItemBindingImpl.java
+ com.example.android.marsphotos.databinding.GridViewItemBindingImpl
+com/example/android/marsphotos/databinding/GridViewItemBinding.java
+ com.example.android.marsphotos.databinding.GridViewItemBinding
+com/example/android/marsphotos/databinding/FragmentOverviewBindingImpl.java
+ com.example.android.marsphotos.databinding.FragmentOverviewBindingImpl
+com/example/android/marsphotos/databinding/FragmentOverviewBinding.java
+ com.example.android.marsphotos.databinding.FragmentOverviewBinding

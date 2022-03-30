@@ -1,0 +1,80 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<!--
+3  ~ Copyright (C) 2021 The Android Open Source Project.
+4  ~
+5  ~ Licensed under the Apache License, Version 2.0 (the "License");
+6  ~ you may not use this file except in compliance with the License.
+7  ~ You may obtain a copy of the License at
+8  ~
+9  ~     http://www.apache.org/licenses/LICENSE-2.0
+10  ~
+11  ~ Unless required by applicable law or agreed to in writing, software
+12  ~ distributed under the License is distributed on an "AS IS" BASIS,
+13  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+14  ~ See the License for the specific language governing permissions and
+15  ~ limitations under the License.
+16-->
+17<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+18    package="com.example.android.marsphotos"
+19    android:versionCode="1"
+20    android:versionName="1.0" >
+21
+22    <uses-sdk
+23        android:minSdkVersion="21"
+23-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml
+24        android:targetSdkVersion="31" />
+24-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml
+25
+26    <uses-permission android:name="android.permission.INTERNET" />
+26-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:20:5-67
+26-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:20:22-64
+27
+28    <application
+28-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:21:5-36:19
+29        android:allowBackup="true"
+29-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:22:9-35
+30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+30-->[androidx.core:core:1.7.0] /Users/kang-seokwon/.gradle/caches/transforms-3/22fc58c1aba25a38624b19fcaec4a163/transformed/core-1.7.0/AndroidManifest.xml:24:18-86
+31        android:debuggable="true"
+32        android:icon="@mipmap/ic_launcher"
+32-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:23:9-43
+33        android:label="@string/app_name"
+33-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:24:9-41
+34        android:roundIcon="@mipmap/ic_launcher_round"
+34-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:25:9-54
+35        android:supportsRtl="true"
+35-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:26:9-35
+36        android:testOnly="true"
+37        android:theme="@style/Theme.MarsPhotos" >
+37-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:27:9-48
+38        <activity
+38-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:28:9-35:20
+39            android:name="com.example.android.marsphotos.MainActivity"
+39-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:28:19-77
+40            android:exported="true" >
+40-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:29:13-36
+41            <intent-filter>
+41-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:30:13-34:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:31:17-69
+42-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:31:25-66
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:33:17-77
+44-->/Users/kang-seokwon/Downloads/android-basics-kotlin-mars-photos-app-starter/app/src/main/AndroidManifest.xml:33:27-74
+45            </intent-filter>
+46        </activity>
+47
+48        <provider
+48-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/kang-seokwon/.gradle/caches/transforms-3/d021bec982e8e10b97ccac4f686ff33c/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:25:9-29:43
+49            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+49-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/kang-seokwon/.gradle/caches/transforms-3/d021bec982e8e10b97ccac4f686ff33c/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:26:13-79
+50            android:authorities="com.example.android.marsphotos.lifecycle-process"
+50-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/kang-seokwon/.gradle/caches/transforms-3/d021bec982e8e10b97ccac4f686ff33c/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:27:13-69
+51            android:exported="false"
+51-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/kang-seokwon/.gradle/caches/transforms-3/d021bec982e8e10b97ccac4f686ff33c/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:28:13-37
+52            android:multiprocess="true" />
+52-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/kang-seokwon/.gradle/caches/transforms-3/d021bec982e8e10b97ccac4f686ff33c/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:29:13-40
+53    </application>
+54
+55</manifest>
