@@ -2,6 +2,7 @@ package com.example.busschedule.database.schedule
 
 import androidx.room.Dao
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ScheduleDao {
@@ -11,11 +12,11 @@ interface ScheduleDao {
      * 버스 정류장이 도착 시간에 따라 오름차순으로 표시
      */
     @Query("SELECT * FROM schedule ORDER BY arrival_time ASC")
-    fun getAll(): List<Schedule>
+    fun getAll(): Flow<List<Schedule>>
 
     /*
      * 모든 열 선택
      */
     @Query("SELECT * FROM schedule WHERE stop_name = :stopName ORDER BY arrival_time ASC")
-    fun getByStopName(stopName: String): List<Schedule>
+    fun getByStopName(stopName: String): Flow<List<Schedule>>
 }
