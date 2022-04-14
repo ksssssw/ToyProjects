@@ -55,28 +55,33 @@ class BlurActivity : AppCompatActivity() {
 
     private fun workInfosObserver(): Observer<List<WorkInfo>> {
         return Observer { listOfWorkInfo ->
+            // 다음 몇 줄은 WorkInfo가 있는 경우 단일 WorkInfo를 가져옵니다.
+            // 이 코드는 ViewModel의 Transformation에 있을 수 있습니다. 그들은 여기에 포함되어 있습니다
+            // WorkInfo를 표시하는 전체 프로세스가 한 위치에 있도록 합니다.
+            // 일치하는 작업 정보가 없으면 아무 작업도 수행하지 않음
 
-            // Note that these next few lines grab a single WorkInfo if it exists
-            // This code could be in a Transformation in the ViewModel; they are included here
-            // so that the entire process of displaying a WorkInfo is in one location.
-
-            // If there are no matching work info, do nothing
+            /*
+             * WorkInfo 목록이 null이 아닌지 검사
+             */
             if (listOfWorkInfo.isNullOrEmpty()) {
                 return@Observer
             }
 
-            // We only care about the one output status.
-            // Every continuation has only one worker tagged TAG_OUTPUT
+            // 우리는 하나의 출력 상태에만 신경을 씁니다.
+            // 모든 연속 작업에는 TAG_OUTPUT 태그가 지정된 작업자가 하나만 있습니다.
             val workInfo = listOfWorkInfo[0]
 
+            // WorkInfo가 완료된 경우에
             if (workInfo.state.isFinished) {
                 showWorkFinished()
 
-                // Normally this processing, which is not directly related to drawing views on
-                // screen would be in the ViewModel. For simplicity we are keeping it here.
+                // workInfo.outputData를 사용하여 출력 데이터를 가져온다.
+                // 그런 다음 출력 URI를 key를 사용해 가져온다.
+                // 일반적으로 이 처리는 드로잉 뷰와 직접 관련이 없습니다.
+                // 화면은 ViewModel에 있습니다. 단순화를 위해 여기에 보관합니다.
                 val outputImageUri = workInfo.outputData.getString(KEY_IMAGE_URI)
 
-                // If there is an output file show "See File" button
+                // 출력 파일이 있는 경우 "파일 보기" 버튼 표시
                 if (!outputImageUri.isNullOrEmpty()) {
                     viewModel.setOutputUri(outputImageUri)
                     binding.seeFileButton.visibility = View.VISIBLE

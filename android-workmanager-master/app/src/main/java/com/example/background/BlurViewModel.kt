@@ -27,13 +27,15 @@ class BlurViewModel(application: Application) : ViewModel() {
     private var imageUri: Uri? = null
     internal var outputUri: Uri? = null
     private val workManager = WorkManager.getInstance(application) // WorkManager 인스턴스의 변수를 만든다.
-    internal val outputWorkInfos: LiveData<List<WorkInfo>> =
-        workManager.getWorkInfosByTagLiveData(TAG_OUTPUT)
+    internal val outputWorkInfos: LiveData<List<WorkInfo>>
+//    = workManager.getWorkInfosByTagLiveData(TAG_OUTPUT)
 
     init {
         // This transformation makes sure that whenever the current work Id changes the WorkInfo
         // the UI is listening to changes
         imageUri = getImageUri(application.applicationContext)
+
+        outputWorkInfos = workManager.getWorkInfosByTagLiveData(TAG_OUTPUT)
     }
 
     internal fun cancelWork() {
@@ -58,16 +60,51 @@ class BlurViewModel(application: Application) : ViewModel() {
      * @param blurLevel The amount to blur the image
      */
     internal fun applyBlur(blurLevel: Int) {
-
         /*
          * 새로운 OneTimeWorkRequestBuilder.Builder()
          * setInputData()를 호출하여 createInputDataForUri에서 반환받은 결과를 전달한다.
          * WorkRequest를 Queue에 전달한다.
          */
-        val blurRequest = OneTimeWorkRequestBuilder<BlurWorker>()
-            .setInputData(createInputDataForUri())
+//        REPLACE THIS CODE:
+//        val blurRequest = OneTimeWorkRequestBuilder<BlurWorker>()
+//            .setInputData(createInputDataForUri())
+//            .build()
+//        workManager.enqueue(blurRequest)
+
+//        WITH:
+        // WorkRequest를 추가한다. 임시파일을 Clean
+        var continuation = workManager
+            .beginUniqueWork(
+                IMAGE_MANIPULATION_WORK_NAME,
+                ExistingWorkPolicy.REPLACE,
+                OneTimeWorkRequest.from(CleanupWorker::class.java)
+            )
+
+        for (i in 0 until blurLevel) {
+            // WorkRequest를 하나 더 추가한다. 이미지를 Blur처리
+            val blurBuilder = OneTimeWorkRequestBuilder<BlurWorker>()
+
+            /*
+             * 첫번째 블러 work일 경우 Uri를 입력한다.
+             * 첫 번째 블러 work 후 입력은 이전의 출력이 된다.
+             */
+            if (i == 0) {
+                blurBuilder.setInputData(createInputDataForUri())
+            }
+            continuation = continuation.then(blurBuilder.build())
+        }
+
+        // WorkRequest를 하나 더 추가한다. 파일시스템에 이미지 저장
+        val save = OneTimeWorkRequestBuilder<SaveImageToFileWorker>()
+            .addTag(TAG_OUTPUT)
             .build()
-        workManager.enqueue(blurRequest)
+
+        continuation = continuation.then(save)
+
+        // work start
+        continuation.enqueue()
+
+        ////////////////////////////////////////////////////////////////////////
 
         // Add WorkRequest to Cleanup temporary images
 //        var continuation = workManager
