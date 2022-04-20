@@ -25,12 +25,12 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile // volatile속성은 버그를 방지하기 위해 appdatabase 인스턴스에 사용하는것이 좋음
         private var INSTANCE: AppDatabase? = null
 
+        /*
+         * 이미 있는 경우 기존 인스턴스 반환
+         * 필요하다면 처음으로 데이터베이스를 만든다.
+         * createFromAsset()를 호출하여 기존 데이터를 로드한다.
+         */
         fun getDatabase(context: Context): AppDatabase {
-            /*
-             * 이미 있는 경우 기존 인스턴스 반환
-             * 필요하다면 처음으로 데이터베이스를 만든다.
-             * createFromAsset()를 호출하여 기존 데이터를 로드한다.
-             */
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context,

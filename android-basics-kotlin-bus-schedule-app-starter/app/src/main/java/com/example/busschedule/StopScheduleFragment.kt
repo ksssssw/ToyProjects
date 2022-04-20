@@ -16,6 +16,7 @@
 package com.example.busschedule
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -83,6 +84,7 @@ class StopScheduleFragment : Fragment() {
         // best practice, and in the next step we'll see how to improve this.
         lifecycle.coroutineScope.launch {
             viewModel.scheduleForStopName(stopName).collect() {
+                Log.d("StopScheduleFragment", "dao : $it")
                 busStopAdapter.submitList(it)
             }
         }

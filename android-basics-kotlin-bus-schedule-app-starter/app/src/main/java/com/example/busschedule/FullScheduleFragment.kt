@@ -16,6 +16,7 @@
 package com.example.busschedule
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,6 +77,7 @@ class FullScheduleFragment : Fragment() {
         lifecycle.coroutineScope.launch {
             viewModel.fullSchedule().collect(){
                 busStopAdapter.submitList(it)
+                Log.d("FullScheduleFragment", "dao : $it")
             }
         }
     }
