@@ -32,9 +32,19 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
     /*
      * InventoryViewModel클래스에서 항목 세부정보 문자열을 3개 가져오는 함수
      */
-    fun addNewItem(itemName: String, itemPrice: String, itemCount: String){
+    fun addNewItem(itemName: String, itemPrice: String, itemCount: String) {
         val newItem = getNewItemEntry(itemName, itemPrice, itemCount)
         insertItem(newItem)
+    }
+
+    /*
+     * TextFields의 텍스트가 비어있는지 아닌지 확인
+     */
+    fun isEntryValid(itemName: String, itemPrice: String, itemCount: String): Boolean {
+        if (itemName.isBlank() || itemPrice.isBlank() || itemCount.isBlank()) {
+            return false
+        }
+        return true
     }
 }
 

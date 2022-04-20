@@ -23,7 +23,9 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.inventory.data.Item
 import com.example.inventory.databinding.FragmentAddItemBinding
 
 /**
@@ -32,12 +34,17 @@ import com.example.inventory.databinding.FragmentAddItemBinding
 class AddItemFragment : Fragment() {
 
     private val navigationArgs: ItemDetailFragmentArgs by navArgs()
+    lateinit var item: Item
 
     /*
-     *
+     * InventoryViewModel 유형의 viewModel 정의
+     * by activtyViewModels() Kotlin 속성 위임을 사용하여 프라그먼트 전체에서 viewModel 공유
      */
     private val viewModel: InventoryViewModel by activityViewModels {
-
+        InventoryViewModelFactory(
+            (activity?.application as InventoryApplication).database
+                .itemDao()
+        )
     }
 
     // Binding object instance corresponding to the fragment_add_item.xml layout
@@ -52,7 +59,36 @@ class AddItemFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAddItemBinding.inflate(inflater, container, false)
+
         return binding.root
+    }
+
+    private fun isEntryValid(): Boolean {
+        return viewModel.isEntryValid(
+            binding.itemName.text.toString(),
+            binding.itemPrice.text.toString(),
+            binding.itemCount.text.toString()
+        )
+    }
+
+    private fun addNewItem() {
+        if (isEntryValid()) {
+            viewModel.addNewItem(
+                binding.itemName.text.toString(),
+                binding.itemPrice.text.toString(),
+                binding.itemCount.text.toString()
+            )
+        }
+        // ItemListFragment로 다시 이동
+        val action = AddItemFragmentDirections.actionAddItemFragmentToItemListFragment()
+        findNavController().navigate(action)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.saveAction.setOnClickListener {
+            addNewItem()
+        }
     }
 
     /**

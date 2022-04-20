@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 /*
  * 앱의 Item 데이터베이스를 나타내는 클래스
  */
-@Entity(tableName = "item")
+@Entity
 data class Item(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
