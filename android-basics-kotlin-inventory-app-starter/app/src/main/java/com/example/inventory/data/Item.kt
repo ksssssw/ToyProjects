@@ -3,6 +3,7 @@ package com.example.inventory.data
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.text.NumberFormat
 
 /*
  * 앱의 Item 데이터베이스를 나타내는 클래스
@@ -18,3 +19,6 @@ data class Item(
     @ColumnInfo(name = "quantity")
     val quantityInStock: Int
 )
+
+fun Item.getFormattedPrice(): String =
+    NumberFormat.getCurrencyInstance().format(itemPrice)

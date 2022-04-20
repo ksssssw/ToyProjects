@@ -1,13 +1,13 @@
 package com.example.inventory
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.inventory.data.Item
 import com.example.inventory.data.ItemDao
 import kotlinx.coroutines.launch
 
 class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
+    val allItems: LiveData<List<Item>> = itemDao.getItems().asLiveData() // 데이터베이스 Item
+
 
     /*
      * InventoryViewModel에서 Item 객체를 가져오고 비차단 방식으로 데이터를 DB에 추가하는 함수
