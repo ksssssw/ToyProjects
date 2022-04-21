@@ -8,7 +8,6 @@ import kotlinx.coroutines.launch
 class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
     val allItems: LiveData<List<Item>> = itemDao.getItems().asLiveData() // 데이터베이스 Item
 
-
     /*
      * InventoryViewModel에서 Item 객체를 가져오고 비차단 방식으로 데이터를 DB에 추가하는 함수
      */
@@ -45,6 +44,36 @@ class InventoryViewModel(private val itemDao: ItemDao) : ViewModel() {
             return false
         }
         return true
+    }
+
+    /*
+     * item id를 사용하여 DB에서 항목 세부정보를 검색하는 함수
+     */
+    fun retrieveItem(id: Int): LiveData<Item> {
+        return itemDao.getItem(id).asLiveData()
+    }
+
+    /*
+     * UpdateItem - 판매 기능
+     */
+    private fun updateItem(item: Item) {
+        viewModelScope.launch {
+            itemDao.update(item)
+        }
+    }
+
+    fun sellItem(item: Item) {
+        if (item.quantityInStock > 0) {
+            val newItem = item.copy(quantityInStock = item.quantityInStock - 1)
+            updateItem(newItem)
+        }
+    }
+
+    /*
+     * quantityInStock이 0보다 큰지 확인하는 함수
+     */
+    fun isStockAvailable(item: Item): Boolean {
+        return (item.quantityInStock > 0)
     }
 }
 

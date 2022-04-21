@@ -30,6 +30,12 @@ import com.example.inventory.databinding.ItemListFragmentBinding
  * Main fragment displaying details for all items in the database.
  */
 class ItemListFragment : Fragment() {
+
+    /*
+     * InventoryViewModel 유형의 viewModel이라는 변경 불가능한 private 속성 선언
+     * by위임을 사용해 속성 초기화를 activityViewModels클래스에 전달하고
+     * InventoryViewModelFactory 생성자를 전달한다.
+     */
     private val viewModel: InventoryViewModel by activityViewModels {
         InventoryViewModelFactory(
             (activity?.application as InventoryApplication).database.itemDao()
@@ -50,7 +56,26 @@ class ItemListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = ItemListAdapter
+
+        /*
+         * 아무것도 전달하지 않는 기본 생성자 ItemListAdapter{}를 사용하여 adpater 속성 초기화
+         * 새로 만든 adpater를 다음과 같이 recyclerView에 바인딩
+         */
+        val adapter = ItemListAdapter {
+            val action =
+                ItemListFragmentDirections.actionItemListFragmentToItemDetailFragment(it.id)
+            this.findNavController().navigate(action)
+        }
+        binding.recyclerView.adapter = adapter
+
+        /*
+         * 관찰자를 연결하여 데이터 변경사항을 수신 대기
+         */
+        viewModel.allItems.observe(this.viewLifecycleOwner) { items ->
+            items.let {
+                adapter.submitList(it)
+            }
+        }
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
         binding.floatingActionButton.setOnClickListener {
